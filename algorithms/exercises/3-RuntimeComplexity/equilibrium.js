@@ -1,4 +1,5 @@
 /**
+ * TapeEquilibirum
  * We are given an input array containing n items, and the aim of this problem is to find the point in
  * this array, called point P,that divides the array into 2.
  * e.g. [3, 1, 2, 4, 3]

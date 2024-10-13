@@ -31,7 +31,7 @@
 // push or pop from the stack based on the type of char
 
 function solution(theString) {
-  let valid = true;
+  let valid = 1;
   const theStringArray = theString.split("");
   console.log("### theStringArray: ", theStringArray);
   const theStack = new Array();
@@ -42,8 +42,11 @@ function solution(theString) {
     "}": "{",
   };
 
-  if (theStringArray.length < 2) {
-    return false;
+  if (theStringArray.length === 0) {
+    return 1;
+  }
+  if (theStringArray.length === 1) {
+    return 0;
   }
 
   theStringArray.forEach((char) => {
@@ -72,7 +75,7 @@ function solution(theString) {
           lastInTheStack
         );
 
-        valid = false;
+        valid = 0;
         return;
       }
     }
@@ -84,17 +87,31 @@ function solution(theString) {
 
 // TESTS
 // const input = "{([])}";
+// const expectedResult = 1;
+
 // const input = "{([))}";
+// const expectedResult = 0;
+
 // const input = "[]";
+// const expectedResult = 1;
+
 // const input = "[}";
+// const expectedResult = 0;
+
 // const input = "[}}";
+// const expectedResult = 0;
+
 // const input = "{";
+// const expectedResult = 0;
+
 // const input = "}";
-const input = "";
+// const expectedResult = 0;
+
+// const input = "";
 
 const result = solution(input);
 console.log(
   `### solution result for input "${input}" is: ${result} THE TEST HAS: ${
-    result ? "HAS PASSED" : "HAS FAILED"
+    result === expectedResult ? "HAS PASSED" : "HAS FAILED"
   }`
 );

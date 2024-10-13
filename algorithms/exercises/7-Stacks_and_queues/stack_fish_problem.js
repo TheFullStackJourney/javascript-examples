@@ -17,7 +17,7 @@ function solution(a, b) {
   let valid = true;
   console.log("### directions: ", a);
   console.log("### weights: ", b);
-  const theStack = new Array();
+  const theleftStackFish = new Array();
   let rightSideSurvivors = 0;
 
   a.forEach((direction, index) => {
@@ -44,11 +44,11 @@ function solution(a, b) {
         rightSideSurvivors = rightSideSurvivors + 1;
       }
     }
-    console.log("### theStack: ", theStack);
+    console.log("### theleftStackFish: ", theleftStackFish);
   });
 
   console.log(
-    "### no more iterations, fish in theStack (left fishes survivors): ",
+    "### no more iterations, fish in theleftStackFish (left fishes survivors): ",
     theleftStackFish.length
   );
   console.log(
