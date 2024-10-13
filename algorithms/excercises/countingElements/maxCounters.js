@@ -24,11 +24,14 @@
  * result: [3,2,2,4,2]
  */
 
+// naive and quadratic solution, every time you find a max counter instruction, you iterate all over the counters
+// array to max them. O(n*n), potentially we may need to iterate n*m, "n" is the counters and "m" is the array of instructions
+
 // performant solution, use another data structure to track the maxValue and the baseline change
+// O(n+n), we iterate over the instructions once, and over the counters once
 
 function solution(n, a) {
   const counters = Array(n).fill(0);
-  let maxCounter = 0;
   let maxValue = 0;
   let baseline = 0;
 
@@ -59,10 +62,8 @@ function solution(n, a) {
       }
 
       counters[positionInCounter] = newValue;
-      maxCounter = positionInCounter + 1;
       maxValue = maxValue < newValue ? newValue : maxValue;
       console.log("### counters: ", counters);
-      console.log("### maxCounter: ", maxCounter);
       console.log("### maxValue: ", maxValue);
     } else {
       // max out all or track the max out somehow
@@ -76,12 +77,11 @@ function solution(n, a) {
       baseline = maxValue;
     }
   }
-  console.log("### maxCounter: ", maxCounter);
   console.log("### maxValue: ", maxValue);
   console.log("### baseline: ", baseline);
 
   for (j = 0; j < counters.length; j++) {
-    // increment up to the baseline, all those who where left behind the baseline
+    // increment up to the baseline, all those counters who where left behind the baseline
     if (counters[j] < baseline) {
       counters[j] = baseline;
     }
@@ -98,5 +98,39 @@ const result = solution(n, input);
 console.log(
   `### solution result for input ${input} and n: ${n}  is: ${result} THE TEST HAS: ${
     result.toString() == "3,2,2,4,2" ? "HAS PASSED" : "HAS FAILED"
+  }`
+);
+
+// another solution
+/**
+ * This is the solution for CountingElements > MaxCounters
+ * This is marked as RESPECTABLE difficulty
+ */
+
+function solutionSuperEfficient(N, A) {
+  let counters = new Array(N).fill(0);
+  let start_line = 0;
+  let current_max = 0;
+  A.forEach((instruction) => {
+    let index = instruction - 1;
+    if (instruction > N) start_line = current_max;
+    else if (counters[index] < start_line) counters[index] = start_line + 1;
+    else counters[index] += 1;
+    if (instruction <= N && counters[index] > current_max)
+      current_max = counters[index];
+  });
+  for (let i = 0; i < counters.length; i++) {
+    if (counters[i] < start_line) counters[i] = start_line;
+  }
+  return counters;
+}
+
+// test
+
+// TESTS
+const result2 = solutionSuperEfficient(n, input);
+console.log(
+  `### solution result for input ${input} and n: ${n}  is: ${result2} THE TEST HAS: ${
+    result2.toString() == "3,2,2,4,2" ? "HAS PASSED" : "HAS FAILED"
   }`
 );
