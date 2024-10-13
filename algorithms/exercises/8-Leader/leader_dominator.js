@@ -1,4 +1,11 @@
 /**
+ * Similar exercises
+ * - TheWidestPath
+ * - AdjacentPointsMaxDistance
+ * /
+
+
+/**
  * Leader or more than half appearances
  * Find elements in a list with a particular property, if they are a majority of the list, more than half,
  * then its the leader
@@ -36,14 +43,16 @@
 function solution(A) {
   // Implement your solution here
   const results = Array();
+  console.log("### A ", A);
+
   for (i = 0; i < A.length; i++) {
     const first = A[i];
     let second = undefined;
-    if (i + 1 <= A.length) {
+    if (i + 2 <= A.length) {
       // second not over range
       second = A[i + 1];
-      // console.log('### first ', first);
-      // console.log('### second ', second);
+      console.log("### first ", first);
+      console.log("### second ", second);
       if (first !== second) {
         // remove them both from the array
         results[i] = undefined;
@@ -54,8 +63,10 @@ function solution(A) {
         results[i + 1] = second;
       }
     } else {
-      // just set first in null
-      results[i] = undefined;
+      // just leave the first (last elem of the array)
+      console.log("### just leave the first (last elem of the array) ");
+
+      results[i] = first;
     }
     console.log("### results ", results);
   }
@@ -71,7 +82,10 @@ function solution(A) {
 }
 
 // TESTS
-const input = [3, 4, 2, 3, 3, 2, 3];
+// const input = [3, 4, 2, 3, 3, 2, 3]; // ok
+// const input = [3, 4, 3, 2, 3, -1, 3, 3]; // ok
+// const input = [0, 0, 1, 1, 1]; // fails
+// const input = [3, 3, 3, 4, 4, 4, 4]; // fails
 
 const result = solution(input);
 
