@@ -1,1 +1,1 @@
-# javascript-examples
+# javascript
