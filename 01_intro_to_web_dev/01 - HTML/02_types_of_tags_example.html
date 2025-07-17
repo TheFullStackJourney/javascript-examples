@@ -597,23 +597,5 @@
         >
       </p>
     </footer>
-
-    <script>
-      // Add some interactivity to demonstrate the concepts
-      document.addEventListener("DOMContentLoaded", function () {
-        // Change color box color when clicked
-        const colorBox = document.querySelector(".color-box");
-        if (colorBox) {
-          colorBox.addEventListener("click", function () {
-            const colors = ["limegreen", "red", "blue", "orange", "purple"];
-            const randomColor =
-              colors[Math.floor(Math.random() * colors.length)];
-            this.style.backgroundColor = randomColor;
-          });
-          colorBox.style.cursor = "pointer";
-          colorBox.title = "Click me to change color!";
-        }
-      });
-    </script>
   </body>
 </html>
